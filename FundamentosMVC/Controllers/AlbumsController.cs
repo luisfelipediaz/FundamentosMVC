@@ -10,17 +10,20 @@ using FundamentosMVC.Models;
 
 namespace FundamentosMVC.Controllers
 {
+    [RoutePrefix("Marica")]
     public class AlbumsController : Controller
     {
         private FundamentosContext db = new FundamentosContext();
 
         // GET: Albums
+        [Route("Toditos")]
         public ActionResult Index()
         {
             return View(db.Albums.ToList());
         }
 
         // GET: Albums/Details/5
+        [Route("{id:int}")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +39,8 @@ namespace FundamentosMVC.Controllers
         }
 
         // GET: Albums/Create
+        // Autorize se usa para validar que este logeado el usaurio
+        [Authorize()]
         public ActionResult Create()
         {
             return View();
